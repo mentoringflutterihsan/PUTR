@@ -19,8 +19,8 @@ class Pembangunan extends Migration
             $table->string('address')->nullable();
             $table->string('latitude', 15)->nullable();
             $table->string('longtitude', 15)->nullable();
-            $table->integer('nilai_kontrak')->nullable();
-            $table->integer('panjang_pekerjaan')->nullable();
+            $table->integer('nilai_kontrak')->default(0);
+            $table->integer('panjang_pekerjaan')->default(0);
             $table->integer('desa_id')->default(0);
             $table->string('volume');
             $table->string('nilai_pagu');
@@ -36,6 +36,6 @@ class Pembangunan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Pembangunan');
+        Schema::dropIfExists('pembangunan');
     }
 }

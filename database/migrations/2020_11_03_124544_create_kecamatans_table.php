@@ -15,8 +15,8 @@ class CreateKecamatansTable extends Migration
     {
         Schema::create('kecamatans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_kecamatan');
-            $table->integer('luas_wilayah');
+            $table->string('nama_kecamatan', 100);
+            $table->float('luas_wilayah')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

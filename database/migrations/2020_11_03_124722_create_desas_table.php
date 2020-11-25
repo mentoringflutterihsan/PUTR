@@ -15,9 +15,9 @@ class CreateDesasTable extends Migration
     {
         Schema::create('desas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_desa');
-            $table->integer('luas_wilayah');
-            $table->integer('kecamatan_id');
+            $table->integer('kecamatan_id')->default(0);
+            $table->string('nama_desa', 100);
+            $table->float('luas_wilayah')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

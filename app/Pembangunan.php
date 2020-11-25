@@ -1,19 +1,22 @@
 <?php
 
 namespace App;
-use App\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pembangunan extends Model
+class Pembangunan extends Model
 {
+    /**
+     * Define table name
+     *
+     * @var string
+     */
+    protected $table = 'pembangunan';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table='pembangunan';
-
     protected $fillable = [
         'name', 'nilai_kontrak', 'latitude', 'longitude','address', 'panjang_pekerjaan','desa_id',
     ];
@@ -46,13 +49,6 @@ class pembangunan extends Model
     }
 
     /**
-     * pembangunan belongs to User model relation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-   
-
-    /**
      * Get pembangunan coordinate attribute.
      *
      * @return string|null
@@ -63,9 +59,7 @@ class pembangunan extends Model
             return $this->latitude.', '.$this->longitude;
         }
     }
-  
-    
-    
+
     /**
      * Get pembangunan map_popup_content attribute.
      *
@@ -79,9 +73,13 @@ class pembangunan extends Model
         $mapPopupContent .= '<div class="my-2"><strong>'.('lokasi').':</strong><br>'.$this->lokasi.'</div>';
         return $mapPopupContent;
     }
+
+    /**
+     * Relationship to `desas` table
+     *
+     * @return mixed
+     */
     public function desa(){
-        return $this->belongsTo(desa::class);
+        return $this->belongsTo(Desa::class);
     }
-    
-    
 }
