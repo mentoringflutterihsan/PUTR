@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\desa;
+use App\Desa;
 use Illuminate\Http\Request;
 
-class desaController extends Controller
+class DesaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class desaController extends Controller
      */
     public function index()
     {
-        $desa= desa::all();
+        $desa= Desa::all();
         return view('desa.index',['desa' => $desa]);
     }
 
