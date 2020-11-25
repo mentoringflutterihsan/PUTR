@@ -17,8 +17,6 @@ Route::get('/', 'PenggunaController@index');
 
 Auth::routes();
 
-
-
 /*
  * pembangunan Routes
  */
@@ -27,9 +25,8 @@ Route::resource('pembangunan', 'PembangunanController');
 Route::resource('pengguna', 'PenggunaController');
 Route::resource('desa', 'DesaController');
 
-
-
 Route::get('serverside','PenggunaController@serverside');
 Route::get('/export', 'PembangunanController@export_excel');
 // Route::POST('/desa','DropdownController@desa')->name('desa');
-Route::get('/desa/{id}','DropdownController@desa');
+
+Route::get('kecamatan/{id}/desa','DropdownController@getDesaByKecamatan');

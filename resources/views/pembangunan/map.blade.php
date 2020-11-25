@@ -32,7 +32,7 @@
     }).addTo(map);
 
     axios.get('{{ route('api.pembangunan.index') }}')
-    .then(function (response) { 
+    .then(function (response) {
         console.log(response.data);
         L.geoJSON(response.data, {
             pointToLayer: function(geoJsonPoint, latlng) {
@@ -47,7 +47,7 @@
         console.log(error);
     });
 
-    @can('create', new App\pembangunan)
+    @can('create', new App\Pembangunan)
     var theMarker;
 
     map.on('click', function(e) {
@@ -60,7 +60,7 @@
 
         var popupContent = "Your location : " + latitude + ", " + longitude + ".";
         popupContent += '<br><a href="{{ route('pembangunan.create') }}?latitude=' + latitude + '&longitude=' + longitude + '">Add new pembangunan here</a>';
-       
+
         theMarker = L.marker([latitude, longitude]).addTo(map);
         theMarker.bindPopup(popupContent)
         .openPopup();

@@ -61,7 +61,7 @@
 <main class="py-4 container">
     <div class="mb-3">
         <div class="">
-            @can('create', new App\pembangunan)
+            @can('create', new App\Pembangunan)
             <a href={{route("pembangunan.create")}} class="btn btn-success">Buat Data</a>
             <a href="/export" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
             @endcan

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\pembangunan;
-use App\kecamatan;
-
-
+use App\Pembangunan;
+use App\Kecamatan;
 use Illuminate\Http\Request;
 use App\Exports\PembangunanExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,9 +25,8 @@ class PembangunanController extends Controller
     // }
     public function index(Request $request)
     {
- 
-        $pembangunan = pembangunan::all();
-    
+        $pembangunan = Pembangunan::all();
+
         return view('pembangunan.index', compact('pembangunan'));
         // return view('pembangunan.index');
     }
@@ -41,9 +38,13 @@ class PembangunanController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', new pembangunan);
-        $kecamatan=kecamatan::pluck('nama','id');
-        return view('pembangunan.create',['kecamatan'=>$kecamatan,]);
+        $this->authorize('create', new Pembangunan);
+
+        $data = [
+            'kecamatan' => Kecamatan::pluck('nama_kecamatan','id')
+        ];
+
+        return view('pembangunan.create', $data);
     }
 
     /**
@@ -54,7 +55,7 @@ class PembangunanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', new pembangunan);
+        $this->authorize('create', new Pembangunan);
 
         $newpembangunan = $request->validate([
             'name'      => 'required|max:60',
@@ -63,21 +64,20 @@ class PembangunanController extends Controller
             'longitude' => 'nullable|required_with:latitude|max:15',
             'lokasi'      => 'required|max:60',
             'panjang_pekerjaan' => 'required|max:60',
-            
+
         ]);
-    
-        $pembangunan = pembangunan::create($newpembangunan);
+
+        $pembangunan = Pembangunan::create($newpembangunan);
 
         return redirect()->route('pembangunan.show', $pembangunan);
     }
 
-    
     /**
      *
-     * @param  \App\pembangunan  $pembangunan
+     * @param  \App\Pembangunan  $pembangunan
      * @return \Illuminate\View\View
      */
-    public function show(pembangunan $pembangunan)
+    public function show(Pembangunan $pembangunan)
     {
         return view('pembangunan.show', compact('pembangunan'));
     }
@@ -88,7 +88,7 @@ class PembangunanController extends Controller
      * @param  \App\pembangunan  $pembangunan
      * @return \Illuminate\View\View
      */
-    public function edit(pembangunan $pembangunan)
+    public function edit(Pembangunan $pembangunan)
     {
         $this->authorize('update', $pembangunan);
 
@@ -102,7 +102,7 @@ class PembangunanController extends Controller
      * @param  \App\pembangunan  $pembangunan
      * @return \Illuminate\Routing\Redirector
      */
-    public function update(Request $request, pembangunan $pembangunan)
+    public function update(Request $request, Pembangunan $pembangunan)
     {
         $this->authorize('update', $pembangunan);
 
@@ -127,7 +127,7 @@ class PembangunanController extends Controller
      * @param  \App\pembangunan  $pembangunan
      * @return \Illuminate\Routing\Redirector
      */
-    public function destroy(Request $request, pembangunan $pembangunan)
+    public function destroy(Request $request, Pembangunan $pembangunan)
     {
         $this->authorize('delete', $pembangunan);
 
@@ -143,5 +143,5 @@ class PembangunanController extends Controller
 	{
 		return Excel::download(new PembangunanExport, 'pembangunan.xlsx');
     }
-   
+
 }

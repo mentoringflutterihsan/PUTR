@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <select name="kecamatan" class="form-control" style="width:250px">
-                            <option value="">--- Select Country ---</option>
+                            <option value="">- Pilih Kecamatan -</option>
                             @foreach ($kecamatan as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <select name="desa" id="desa" class="form-control">
-                            <option value="">== Select desa ==</option>
+                            <option value="">- Pilih Desa -</option>
                         </select>
 
                     </div>
@@ -105,34 +105,8 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function ()
-    {
-            jQuery('select[name="kecamatan"]').on('change',function(){
-               var kecamatanID = jQuery(this).val();
-               if(kecamatanID)
-               {
-                  jQuery.ajax({
-                     url : '{{url('/desa/')}}/' +kecamatanID,
-                     type : "GET",
-                     dataType : "json",
-                     success:function(data)
-                     {
-                        console.log(data);
-                        jQuery('select[name="desa"]').empty();
-                        jQuery.each(data, function(key,value){
-                           $('select[name="desa"]').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                     }
-                  });
-               }
-               else
-               {
-                  $('select[name="desa"]').empty();
-               }
-            });
-    });
-</script>
+<script src="{{ asset('js/pembangunan/create.js?_=' . rand()) }}"></script>
+
 {{-- <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
     integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
     crossorigin=""></script>
@@ -167,6 +141,6 @@ return updateMarker( $('#latitude').val() , $('#longitude').val());
 }
 $('#latitude').on('input', updateMarkerByInputs);
 $('#longitude').on('input', updateMarkerByInputs);
-</script>
+</script> --}}
 
-@endpush --}}
+@endpush

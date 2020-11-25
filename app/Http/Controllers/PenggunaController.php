@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\pembangunan;
+use App\Pembangunan;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -19,7 +19,7 @@ class PenggunaController extends Controller
     // }
     public function index()
     {
-        $penggunaQuery = pembangunan::query();
+        $penggunaQuery = Pembangunan::query();
         $penggunaQuery->where('name', 'like', '%'.request('q').'%');
         $pengguna = $penggunaQuery->paginate(25);
         // // $data=pembangunan::all();
@@ -56,7 +56,7 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(pembangunan $pengguna)
+    public function show(Pembangunan $pengguna)
     {
         return view('pengguna.show', compact('pengguna'));
     }
