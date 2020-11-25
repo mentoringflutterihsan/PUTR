@@ -21,13 +21,11 @@ class Pembangunan extends Migration
             $table->string('longtitude', 15)->nullable();
             $table->integer('nilai_kontrak')->nullable();
             $table->integer('panjang_pekerjaan')->nullable();
-         
-            $table->foreignId('desa_id')->references('id')->on('desas');
+            $table->integer('desa_id')->default(0);
             $table->string('volume');
             $table->string('nilai_pagu');
-            $table->date('tahun');
+            $table->mediumInteger('tahun')->default(0);
             $table->timestamps();
-
         });
     }
 

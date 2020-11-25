@@ -14,10 +14,11 @@ class CreateDesasTable extends Migration
     public function up()
     {
         Schema::create('desas', function (Blueprint $table) {
-            $table->increments('id'); 
+            $table->increments('id');
             $table->string('nama_desa');
             $table->integer('luas_wilayah');
-            $table->foreignId('kecamatan_id')->references('id')->on('kecamatans');
+            $table->integer('kecamatan_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
