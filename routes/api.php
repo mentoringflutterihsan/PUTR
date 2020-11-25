@@ -24,5 +24,5 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
      * Pembangunan Endpoints
      */
     Route::get('pembangunan', 'PembangunanController@index')->name('pembangunan.index');
-    Route::get('pengguna', 'PenggunaController@index')->name('pengguna.index');
+    // Route::get('pengguna', 'PenggunaController@index')->name('pengguna.index');
 });

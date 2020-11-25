@@ -1,28 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\desa;
-use DB;
+use App\Desa;
 use Illuminate\Http\Request;
 
 class DropdownController extends Controller
 {
-    public function desa($id){
-        // $desa=desa::where('kecamatan_id',$id)->pluck("name","id");
-        // return json_encode($desa);
-        // $data= "<option value=''>-Select Desa - </option>";
-        // foreach ($desa as $value){
-        //     $data .= "<option value='".$value->id."'>".$value->nama."</option>";
-        // }
-        // echo $data;
+    /**
+     * Get desa data by `kecamatan_id`
+     *
+     * @param int $kecamatan_id
+     * @return mixed
+     */
+    public function getDesaByKecamatan($kecamatan_id){
+        $desa = Desa::where('kecamatan_id', $kecamatan_id)
+                    ->selectRaw('id, nama_desa AS text')
+                    ->orderBy('nama_desa')
+                    ->get();
 
-
-        // $desa = desa::where('kecamatan_id', $request->get('id'))->pluck('name', 'id');
-
-        // return response()->json($desa);
-
-
-        $desa = DB::table("desa")->where("kecamatan_id",$id)->pluck("nama","id");
-        return json_encode($desa);
+        return response()->json($desa);
     }
 }

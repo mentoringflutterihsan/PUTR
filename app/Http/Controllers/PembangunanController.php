@@ -38,9 +38,13 @@ class PembangunanController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', new pembangunan);
-        $kecamatan = Kecamatan::pluck('nama','id');
-        return view('pembangunan.create',['kecamatan'=>$kecamatan,]);
+        $this->authorize('create', new Pembangunan);
+
+        $data = [
+            'kecamatan' => Kecamatan::pluck('nama_kecamatan','id')
+        ];
+
+        return view('pembangunan.create', $data);
     }
 
     /**

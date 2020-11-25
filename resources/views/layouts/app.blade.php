@@ -16,6 +16,9 @@
     <!--DataTables-->
     @yield('styles')
 
+    <script>
+        const base_url = '{{ url('/') }}';
+    </script>
 </head>
 </head>
 
