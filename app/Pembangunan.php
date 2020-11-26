@@ -18,7 +18,16 @@ class Pembangunan extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'nilai_kontrak', 'latitude', 'longitude','address', 'panjang_pekerjaan','desa_id',
+        'name',
+        'address',
+        'latitude',
+        'longitude',
+        'nilai_kontrak',
+        'panjang_pekerjaan',
+        'desa_id',
+        'volume',
+        'nilai_pagu',
+        'tahun'
     ];
 
     /**
