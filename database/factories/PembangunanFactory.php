@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Pembangunan::class, function (Faker $faker) {
     return [
-        'name' => $faker->jobTitle,
+        'name' => substr($faker->jobTitle, 0, 60),
         'address' => $faker->address,
         'latitude' => $faker->latitude,
         'longitude' => $faker->longitude,
