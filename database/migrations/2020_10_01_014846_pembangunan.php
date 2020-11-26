@@ -18,7 +18,7 @@ class Pembangunan extends Migration
             $table->string('name', 60);
             $table->string('address')->nullable();
             $table->string('latitude', 15)->nullable();
-            $table->string('longtitude', 15)->nullable();
+            $table->string('longitude', 15)->nullable();
             $table->integer('nilai_kontrak')->default(0);
             $table->integer('panjang_pekerjaan')->default(0);
             $table->integer('desa_id')->default(0);
