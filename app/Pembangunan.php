@@ -88,7 +88,43 @@ class Pembangunan extends Model
      *
      * @return mixed
      */
-    public function desa(){
-        return $this->belongsTo(Desa::class);
+    public function desa() {
+        return $this->belongsTo(Desa::class)->withDefault();
+    }
+
+    /**
+     * Filter by `tahun`
+     *
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param int $tahun
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeTahun($query, $tahun)
+    {
+        return $query->whereBetween('tahun', [ $tahun, $tahun ]);
+    }
+
+    /**
+     * Searching data from datatable
+     *
+     * @param \Illuminate\Database\Query\Builder $query
+     * @param string|null $search
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeSearchTable($query, $search = null)
+    {
+        if (!empty($search)) {
+            $search_term = '%' . $search . '%';
+
+            return $query->where( function($query) use ($search_term) {
+                $query->where('name', 'like', $search_term)
+                    ->orWhere('address', 'like', $search_term)
+                    ->orWhere('nilai_kontrak', 'like', $search_term)
+                    ->orWhere('tahun', 'like', $search_term)
+                    ->orWhere('panjang_pekerjaan', 'like', $search_term);
+            });
+        }
+
+        return;
     }
 }
