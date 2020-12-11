@@ -2,6 +2,7 @@
 
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pembangunan extends Model
 {
@@ -46,15 +47,19 @@ class Pembangunan extends Model
      */
     public function getNameLinkAttribute()
     {
-        $title = __('app.show_detail_title', [
-            'name' => $this->name, 'type' => __('pembangunan.pembangunan'),
-        ]);
-        $link = '<a href="'.route('pembangunan.show', $this).'"';
-        $link .= ' title="'.$title.'">';
-        $link .= $this->name;
-        $link .= '</a>';
+        try {
+            $title = __('app.show_detail_title', [
+                'name' => $this->name, 'type' => __('pembangunan.pembangunan'),
+            ]);
+            $link = '<a href="'.route('pembangunan.show', $this).'"';
+            $link .= ' title="'.$title.'">';
+            $link .= $this->name;
+            $link .= '</a>';
 
-        return $link;
+        } catch (\Throwable $th) {
+            return;
+
+        }
     }
 
     /**
