@@ -63,7 +63,7 @@ class PembangunanController extends Controller
 
         $pembangunan = Pembangunan::create($newpembangunan);
 
-        return redirect()->route('pembangunan.show', $pembangunan);
+        return redirect()->route('pembangunan.show', [ 'pembangunan' => $pembangunan ]);
     }
 
     /**
@@ -111,7 +111,7 @@ class PembangunanController extends Controller
         ]);
         $pembangunan->update($pembangunanData);
 
-        return redirect()->route('pembangunan.show', $pembangunan);
+        return redirect()->route('pembangunan.show', [ 'pembangunan' => $pembangunan ]);
     }
 
     /**
