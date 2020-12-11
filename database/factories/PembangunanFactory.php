@@ -17,6 +17,6 @@ $factory->define(Pembangunan::class, function (Faker $faker) {
         'desa_id' => factory(Desa::class),
         'volume' => $faker->randomNumber(5),
         'nilai_pagu' => $faker->randomNumber(5),
-        'tahun' => $faker->dateTimeBetween('-2 years', 'now')->format('Y')
+        'tahun' => $faker->dateTimeBetween('-10 years', 'now')->format('Y')
     ];
 });
